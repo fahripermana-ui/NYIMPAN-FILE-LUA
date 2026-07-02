@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMP SCRIPT</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto:wght@400;700;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #FFF5E1;
+            color: #000;
+        }
+
+    .page {
+            display: none;
+        }
+
+    .page.active {
+            display: block;
+        }
+
+        /* HEADER */
+    .header {
+            background: #FFDD00;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #000;
+        }
+
+    .logo {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+        }
+
+    .logo span {
+            background: #000;
+            color: #FFDD00;
+            padding: 2px 8px;
+        }
+
+    .menu-btn {
+            width: 45px;
+            height: 45px;
+            background: #fff;
+            border: 3px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+    .menu-btn svg {
+            width: 25px;
+            height: 25px;
+        }
+
+        /* HALAMAN 1 */
+    .hero {
+            background: #FFDD00;
+            padding: 40px 20px;
+            text-align: center;
+            background-image: radial-gradient(#00000020 1px, transparent 1px);
+            background-size: 15px 15px;
+        }
+
+    .badge {
+            display: inline-block;
+            background: #fff;
+            border: 3px solid #000;
+            padding: 8px 15px;
+            font-weight: 900;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+    .badge::before {
+            content: '■';
+            color: #FF0066;
+            margin-right: 5px;
+        }
+
+    .hero h1 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 48px;
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+
+    .hero h1.outline {
+            -webkit-text-stroke: 2px #000;
+            color: transparent;
+        }
+
+    .hero p {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+    .hero p.highlight {
+            background: #FF0066;
+            color: #fff;
+            padding: 2px 5px;
+        }
+
+    .btn-cari {
+            background: #FF0066;
+            color: #fff;
+            border: 4px solid #000;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: 900;
+            width: 100%;
+            margin: 25px 0 15px;
+            cursor: pointer;
+            box-shadow: 6px 6px 0 #000;
+            transition: 0.1s;
+        }
+
+    .btn-cari:active {
+            box-shadow: 2px 2px 0 #000;
+            transform: translate(4px, 4px);
+        }
+
+    .btn-request {
+            background: #fff;
+            color: #000;
+            border: 4px solid #000;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: 900;
+            width: 100%;
+            cursor: pointer;
+            box-shadow: 6px 6px 0 #000;
+        }
+
+   .btn-request:active {
+            box-shadow: 2px 2px 0 #000;
+            transform: translate(4px, 4px);
+        }
+
+    .features {
+            padding: 20px;
+        }
+
+    .feature-box {
+            background: #fff;
+            border: 4px solid #000;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 15px;
+        }
+
+    .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: #00FFAA;
+            border: 3px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+    .feature-icon svg {
+            width: 30px;
+            height: 30px;
+        }
+
+    .feature-text h3 {
+            font-size: 16px;
+            font-weight: 900;
+            margin-bottom: 5px;
+        }
+
+    .feature-text p {
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        /* HALAMAN 2 */
+    .mod-list {
+            padding: 20px;
+        }
+
+    .btn-add {
+            background: #00FFAA;
+            color: #000;
+            border: 4px solid #000;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 900;
+            width: 100%;
+            margin-bottom: 20px;
+            cursor: pointer;
+            box-shadow: 6px 6px 0 #000;
+        }
+
+    .mod-card {
+            background: #fff;
+            border: 4px solid #000;
+            margin-bottom: 20px;
+            box-shadow: 6px 6px 0 #000;
+            position: relative;
+        }
+
+    .btn-delete {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            width: 35px;
+            height: 35px;
+            background: #FF0066;
+            border: 3px solid #000;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 3px 3px 0 #000;
+        }
+
+    .btn-delete:active {
+            box-shadow: 1px 1px 0 #000;
+            transform: translate(2px, 2px);
+        }
+
+    .btn-delete svg {
+            width: 18px;
+            height: 18px;
+            color: #fff;
+        }
+
+    .mod-card-header {
+            padding: 10px;
+            display: flex;
+            gap: 8px;
+            background: #FF0066;
+            flex-wrap: wrap;
+        }
+
+    .tag {
+            background: #FFDD00;
+            border: 2px solid #000;
+            padding: 4px 8px;
+            font-size: 10px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+    .tag.white {
+            background: #fff;
+        }
+
+    .tag.pc {
+            background: #0066FF;
+            color: #fff;
+        }
+
+    .mod-card-body {
+            padding: 15px;
+        }
+
+    .mod-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 24px;
+            color: #AA0000;
+            margin-bottom: 10px;
+            word-break: break-word;
+        }
+
+    .mod-author {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+    .author-name {
+            background: #00FFAA;
+            border: 2px solid #000;
+            padding: 5px 10px;
+            font-weight: 900;
+            font-size: 12px;
+        }
+
+    .stats-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+    .stat-box {
+            background: #fff;
+            border: 2px solid #000;
+            padding: 8px;
+            font-weight: 900;
+            font-size: 12px;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+    .stat-box.like {
+            background: #FF0066;
+            color: #fff;
+        }
+
+    .stat-box.like.active {
+            background: #FF0000;
+        }
+
+    .mod-desc {
+            font-size: 13px;
+            margin: 15px 0;
+            font-weight: 700;
+            word-break: break-word;
+        }
+
+    .mod-tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+    .mod-tag {
+            border: 2px solid #000;
+            padding: 6px 12px;
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+    .mod-tag.yellow { background: #FFDD00; }
+    .mod-tag.red { background: #FF0066; color: #fff; }
+
+    .fungsi-text {
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            word-break: break-word;
+        }
+
+    .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+    .btn-download {
+            background: #00FFAA;
+            border: 4px solid #000;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 900;
+            flex: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #000;
+        }
+
+    .btn-detail {
+            background: #FFDD00;
+            border: 4px solid #000;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 900;
+            flex: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* MODAL POPUP */
+    .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+    .modal.active {
+            display: flex;
+        }
+
+    .modal-content {
+            background: #fff;
+            border: 4px solid #000;
+            padding: 25px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 8px 8px 0 #000;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+    .modal-content h2 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+    .detail-item {
+            margin-bottom: 15px;
+        }
+
+    .detail-label {
+            font-weight: 900;
+            font-size: 12px;
+            color: #FF0066;
+            margin-bottom: 5px;
+        }
+
+    .detail-value {
+            font-weight: 700;
+            font-size: 14px;
+            word-break: break-word;
+            background: #FFF5E1;
+            border: 2px solid #000;
+            padding: 8px;
+        }
+
+    .form-group {
+            margin-bottom: 15px;
+        }
+
+    .form-group label {
+            display: block;
+            font-weight: 900;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+    .form-group input,.form-group textarea,.form-group select {
+            width: 100%;
+            border: 3px solid #000;
+            padding: 10px;
+            font-size: 14px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            background: #fff;
+        }
+
+    .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+    .file-input-wrapper {
+            border: 3px dashed #000;
+            padding: 20px;
+            text-align: center;
+            background: #FFF5E1;
+            cursor: pointer;
+        }
+
+    .file-input-wrapper input[type="file"] {
+            display: none;
+        }
+
+    .file-name {
+            font-size: 12px;
+            font-weight: 700;
+            margin-top: 10px;
+            color: #FF0066;
+      }
+
+    .modal-btns {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+    .btn-submit {
+            flex: 1;
+            background: #00FFAA;
+            border: 3px solid #000;
+            padding: 12px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+    .btn-submit:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+    .btn-cancel {
+            flex: 1;
+            background: #FF0066;
+            color: #fff;
+            border: 3px solid #000;
+            padding: 12px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+    .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            font-weight: 900;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- HALAMAN 1 -->
+    <div id="page1" class="page active">
+        <div class="header">
+            <div class="logo">SAMP <span>SCRIPT</span></div>
+            <div class="menu-btn">
+                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+            </div>
+        </div>
+
+        <div class="hero">
+            <div class="badge">SAMP SYNDICATE</div>
+            <h1><span class="outline">SAMP</span> SQUAD</h1>
+            <p>KOLEKSI MODIFIKASI VISUAL, SCRIPT LUA, DAN TOOLS</p>
+            <p>EKSKLUSIF UNTUK <span class="highlight">PERSONAL PLAYER</span> GTA SAN</p>
+            <p>ANDREAS MULTIPLAYER.</p>
+
+            <button class="btn-cari" onclick="showPage2()">CARI MOD →</button>
+            <button class="btn-request" onclick="openRequestModal()">REQUEST SCRIPT</button>
+        </div>
+
+        <div class="features">
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+                </div>
+                <div class="feature-text">
+                    <h3>LIGHTWEIGHT & FAST</h3>
+                    <p>SCRIPT EFISIEN, RINGAN DI PC & ANDROID KENTANG, TANPA FPS DROP.</p>
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+                </div>
+                <div class="feature-text">
+                    <h3>SAFE FOR DAILY USE</h3>
+                    <p>MOD AMAN (LEGIT) UNTUK AKTIVITAS SEHARI-HARI DI BERBAGAI SERVER SAMP.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HALAMAN 2 -->
+    <div id="page2" class="page">
+        <div class="header">
+            <div class="logo">SAMP <span>SCRIPT</span></div>
+            <div class="menu-btn" onclick="showPage1()">
+                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            </div>
+        </div>
+
+        <div class="mod-list" id="modList">
+            <button class="btn-add" onclick="openModal()">+ TAMBAH FILE LUA</button>
+            <div class="empty-state" id="emptyState">
+                BELUM ADA MOD.<br>KLIK "TAMBAH FILE LUA" BUAT NAMBAH
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL TAMBAH FILE -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h2>TAMBAH FILE LUA</h2>
+            <div class="form-group">
+                <label>1. NAMA FILE</label>
+                <input type="text" id="namaFile" placeholder="Contoh: Voice Changer Pro">
+            </div>
+            <div class="form-group">
+                <label>2. DESKRIPSI</label>
+                <textarea id="deskripsi" placeholder="Contoh: Script buat ubah suara jadi robot, cewe, dll"></textarea>
+            </div>
+            <div class="form-group">
+                <label>3. FUNGSI</label>
+                <input type="text" id="fungsi" placeholder="Contoh: /vc buat buka menu">
+            </div>
+            <div class="form-group">
+                <label>4. LINK MEDIASHARE</label>
+                <input type="text" id="linkFile" placeholder="https://www.mediafire.com/file/xxx/xxx.lua">
+            </div>
+            <div class="form-group">
+                <label>5. PLATFORM</label>
+                <select id="platform">
+                    <option value="UNIVERSAL">UNIVERSAL</option>
+                    <option value="ANDROID">ANDROID</option>
+                    <option value="PC">PC</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>6. BY NAMA</label>
+                <input type="text" id="byNama" placeholder="Contoh: ForgeTeam / Nama Lu">
+            </div>
+            <div class="modal-btns">
+                <button class="btn-submit" onclick="tambahMod()">SIMPAN</button>
+                <button class="btn-cancel" onclick="closeModal()">BATAL</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL REQUEST SCRIPT -->
+    <div class="modal" id="requestModal">
+        <div class="modal-content">
+            <h2>REQUEST SCRIPT</h2>
+            <div class="form-group">
+                <label>1. REQUEST SCRIPT</label>
+                <textarea id="requestText" placeholder="Contoh: Gua mau script auto fishing yang ada fitur jual ikan otomatis"></textarea>
+            </div>
+            <div class="form-group">
+                <label>2. KIRIM VIDIO MP4 UNTUK MEMPERJELAS</label>
+                <div class="file-input-wrapper" onclick="document.getElementById('videoFile').click()">
+                    <svg width="40" height="40" fill="#FF0066" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2.9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1.45 1 1v12c0.55-.45 1-1 1zm-8-1h2v-4h4v-2h-4V8h-2v4H6v2h4z"/></svg>
+                    <div style="font-weight: 900; margin-top: 10px;">KLIK BUAT UPLOAD MP4</div>
+                    <div class="file-name" id="fileName">Belum ada file</div>
+                </div>
+                <input type="file" id="videoFile" accept="video/mp4" onchange="updateFileName()">
+            </div>
+            <div class="modal-btns">
+                <button class="btn-submit" id="kirimBtn" onclick="kirimRequest()">KIRIM REQUEST</button>
+                <button class="btn-cancel" onclick="closeRequestModal()">BATAL</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DETAIL -->
+    <div class="modal" id="detailModal">
+        <div class="modal-content">
+            <h2>DETAIL MOD</h2>
+            <div id="detailContent"></div>
+            <div class="modal-btns">
+                <button class="btn-cancel" onclick="closeDetailModal()" style="flex: 1;">TUTUP</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // GANTI INI PAKE WEBHOOK DISCORD LU WAK
+        const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1426982296820518913/sq6y51Y0KItUx6qnW4QntedjGD7rTHH8Ey5kFrbg-q7VtTHGkJtosnvRIWwcC5ef4AXX';
+
+        let modCounter = 0;
+        let modsData = {};
+
+        function showPage2() {
+            document.getElementById('page1').classList.remove('active');
+            document.getElementById('page2').classList.add('active');
+        }
+
+        function showPage1() {
+            document.getElementById('page2').classList.remove('active');
+            document.getElementById('page1').classList.add('active');
+        }
+
+        function openModal() {
+            document.getElementById('modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+            document.getElementById('namaFile').value = '';
+            document.getElementById('deskripsi').value = '';
+            document.getElementById('fungsi').value = '';
+            document.getElementById('linkFile').value = '';
+            document.getElementById('platform').value = 'UNIVERSAL';
+            document.getElementById('byNama').value = '';
+        }
+
+        function openRequestModal() {
+            document.getElementById('requestModal').classList.add('active');
+        }
+
+        function closeRequestModal() {
+            document.getElementById('requestModal').classList.remove('active');
+            document.getElementById('requestText').value = '';
+            document.getElementById('videoFile').value = '';
+            document.getElementById('fileName').textContent = 'Belum ada file';
+        }
+
+        function updateFileName() {
+            const fileInput = document.getElementById('videoFile');
+            const fileName = document.getElementById('fileName');
+            if(fileInput.files.length > 0) {
+                fileName.textContent = fileInput.files[0].name;
+            } else {
+                fileName.textContent = 'Belum ada file';
+            }
+        }
+
+        async function kirimRequest() {
+            const requestText = document.getElementById('requestText').value;
+            const videoFile = document.getElementById('videoFile').files[0];
+            const kirimBtn = document.getElementById('kirimBtn');
+
+            if(!requestText) {
+                alert('ISI REQUEST DULU WAK!');
+                return;
+            }
+
+            if(!videoFile) {
+                alert('UPLOAD VIDIO MP4 DULU WAK BUAT MEMPERJELAS!');
+                return;
+            }
+
+            if(DISCORD_WEBHOOK_URL === 'WEBHOOK_URL_DISCORD_LU') {
+                alert('SET WEBHOOK DISCORD LU DULU WAK DI DALEM KODE!');
+                return;
+            }
+
+            kirimBtn.disabled = true;
+            kirimBtn.textContent = 'MENGIRIM...';
+
+            const formData = new FormData();
+            const payload = {
+                content: '@everyone',
+                embeds: [{
+                    title: '🔥 REQUEST SCRIPT BARU MASUK WAK!',
+                    color: 16711680,
+                    fields: [
+                        {
+                            name: '📝 Request',
+                            value: requestText.substring(0, 1024),
+                            inline: false
+                        },
+                        {
+                            name: '🎥 Nama Video',
+                            value: videoFile.name,
+                            inline: true
+                        },
+                        {
+                            name: '📊 Ukuran',
+                            value: (videoFile.size / 1024 / 1024).toFixed(2) + ' MB',
+                            inline: true
+                        }
+                    ],
+                    footer: {
+                        text: 'SAMP SCRIPT Request System'
+                    },
+                    timestamp: new Date().toISOString()
+                }]
+            };
+
+            formData.append('payload_json', JSON.stringify(payload));
+            formData.append('file', videoFile);
+
+            try {
+                const response = await fetch(DISCORD_WEBHOOK_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if(response.ok) {
+                    alert(`REQUEST TERKIRIM WAK! 🔥\n\nCek Discord lu, udah masuk sama videonya.`);
+                    closeRequestModal();
+                } else {
+                    throw new Error('Gagal kirim');
+                }
+            } catch(error) {
+                alert('GAGAL KIRIM WAK! Cek webhook URL lu bener ga.\n\nError: ' + error.message);
+            } finally {
+                kirimBtn.disabled = false;
+                kirimBtn.textContent = 'KIRIM REQUEST';
+            }
+        }
+
+        function openDetailModal(id) {
+            const mod = modsData[id];
+            const content = `
+                <div class="detail-item">
+                    <div class="detail-label">NAMA FILE:</div>
+                    <div class="detail-value">${mod.nama}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">BY NAMA:</div>
+                    <div class="detail-value">${mod.byNama}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">PLATFORM:</div>
+                    <div class="detail-value">${mod.platform}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">DESKRIPSI:</div>
+                    <div class="detail-value">${mod.desc}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">FUNGSI:</div>
+                    <div class="detail-value">${mod.fungsi}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">LINK DOWNLOAD:</div>
+                    <div class="detail-value" style="word-break: break-all;">${mod.link}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">RATING:</div>
+                    <div class="detail-value">${mod.likes} ❤️ LIKE</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">DOWNLOAD:</div>
+                    <div class="detail-value">${mod.downloads} KALI</div>
+                </div>
+            `;
+            document.getElementById('detailContent').innerHTML = content;
+            document.getElementById('detailModal').classList.add('active');
+        }
+
+        function closeDetailModal() {
+            document.getElementById('detailModal').classList.remove('active');
+        }
+
+        function tambahMod() {
+            const nama = document.getElementById('namaFile').value;
+            const desc = document.getElementById('deskripsi').value;
+            const fungsi = document.getElementById('fungsi').value;
+            const link = document.getElementById('linkFile').value;
+            const platform = document.getElementById('platform').value;
+            let byNama = document.getElementById('byNama').value;
+
+            if (!nama ||!desc ||!fungsi ||!link) {
+                alert('ISI SEMUA DULU WAK! KECUALI BY NAMA');
+                return;
+            }
+
+            if (!link.startsWith('http')) {
+                alert('LINK MEDIASHARE HARUS PAKE HTTP/HTTPS WAK!');
+                return;
+            }
+
+            if (!byNama) byNama = 'YOU';
+
+            document.getElementById('emptyState').style.display = 'none';
+            modCounter++;
+
+            modsData[modCounter] = {
+                nama: nama,
+                desc: desc,
+                fungsi: fungsi,
+                link: link,
+                platform: platform,
+                byNama: byNama,
+                likes: 0,
+                downloads: 0,
+                liked: false
+            };
+
+            let platformIcon = '🌐';
+            let platformClass = '';
+            if(platform === 'ANDROID') {
+                platformIcon = '📱';
+                platformClass = 'white';
+            } else if(platform === 'PC') {
+                platformIcon = '💻';
+                platformClass = 'pc';
+            }
+
+            const modCard = `
+                <div class="mod-card" id="mod-${modCounter}">
+                    <button class="btn-delete" onclick="hapusMod(${modCounter}, '${nama}')">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                    </button>
+                    <div class="mod-card-header">
+                        <div class="tag ${platformClass}">
+                            ${platformIcon} ${platform}
+                        </div>
+                    <div class="mod-card-body">
+                        <div class="mod-title">${nama.toUpperCase()}</div>
+                        <div class="mod-author">
+                            <div class="author-name">BY: ${byNama.toUpperCase()}</div>
+                        </div>
+                        <div class="stats-row">
+                            <div class="stat-box like" id="like-${modCounter}" onclick="toggleLike(${modCounter})">
+                                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                <span id="like-count-${modCounter}">0</span>
+                            </div>
+                            <div class="stat-box">
+                                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                                <span id="download-count-${modCounter}">0</span>
+                            </div>
+                        </div>
+                        <div class="mod-desc">${desc.toUpperCase()}</div>
+                        <div class="mod-tags">
+                            <div class="mod-tag yellow"># hot</div>
+                            <div class="mod-tag red"># new</div>
+                            <div class="mod-tag red"># trending</div>
+                        </div>
+                        <div class="fungsi-text">FUNGSI: ${fungsi}</div>
+                        <div class="btn-group">
+                            <a href="${link}" target="_blank" class="btn-download" onclick="tambahDownload(${modCounter})">
+                                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                                DOWNLOAD
+                            </a>
+                            <button class="btn-detail" onclick="openDetailModal(${modCounter})">
+                                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                                LEBIH DETAIL
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('modList').insertAdjacentHTML('beforeend', modCard);
+            closeModal();
+        }
+
+        function toggleLike(id) {
+            const mod = modsData[id];
+            const likeBtn = document.getElementById(`like-${id}`);
+            const likeCount = document.getElementById(`like-count-${id}`);
+
+            if (mod.liked) {
+                mod.likes--;
+                mod.liked = false;
+                likeBtn.classList.remove('active');
+            } else {
+                mod.likes++;
+                mod.liked = true;
+                likeBtn.classList.add('active');
+            }
+
+            likeCount.textContent = mod.likes;
+        }
+
+        function tambahDownload(id) {
+            modsData[id].downloads++;
+            document.getElementById(`download-count-${id}`).textContent = modsData[id].downloads;
+        }
+
+        function hapusMod(id, nama) {
+            if (confirm(`YAKIN MAU HAPUS "${nama}" WAK?`)) {
+                document.getElementById(`mod-${id}`).remove();
+                delete modsData[id];
+
+                const cards = document.querySelectorAll('.mod-card');
+                if (cards.length === 0) {
+                    document.getElementById('emptyState').style.display = 'block';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
